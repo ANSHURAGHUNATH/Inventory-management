@@ -6,7 +6,6 @@ import com.amazon.inventorymanagementsystem.model.SearchProductsRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -85,8 +84,8 @@ public class ProductServiceImpl implements ProductService {
         }
 
         productResponse = new ProductResponse();
-        productResponse.setMessage("Product Search Successful.");
-        productResponse.setSuccessful(true);
+        productResponse.setMessage(finalRetrievedProductSet.size()>0?"Product Search Successful.":"No Products found");
+        productResponse.setSuccessful(finalRetrievedProductSet.size()>0?true:false);
         productResponse.setProduct(finalRetrievedProductSet.stream().toList());
         return productResponse;
     }
